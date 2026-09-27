@@ -9,6 +9,3 @@ allowBuilds:
   esbuild: false
   sharp: true
   unrs-resolver: false
-
-minimumReleaseAgeExclude:
-  - "@trueberryless-org/starlight-plugins-docs-components@0.7.0"
