@@ -32,9 +32,12 @@ function getCacheKey(source: Source): string {
 }
 
 function parseCacheEntry(value: unknown): CacheEntry | undefined {
-  return typeof value === "string" && value.length > 0
-    ? (JSON.parse(value) as CacheEntry)
-    : undefined;
+  if (typeof value !== "string" || value.length === 0) return undefined;
+  try {
+    return JSON.parse(value) as CacheEntry;
+  } catch {
+    return undefined;
+  }
 }
 
 function serializeCacheEntry(
