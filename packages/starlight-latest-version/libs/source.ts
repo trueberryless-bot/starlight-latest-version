@@ -29,7 +29,9 @@ export function getReleasePageUrl(source: Source): string {
 export async function fetchLatestReleaseTagName(
   source: Source
 ): Promise<string | undefined> {
-  const response = await fetch(latestReleaseApiUrls[source.type](source.slug));
+  const response = await fetch(latestReleaseApiUrls[source.type](source.slug), {
+    signal: AbortSignal.timeout(10_000),
+  });
 
   if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
 
