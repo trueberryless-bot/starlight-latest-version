@@ -82,11 +82,11 @@ describe("parseVersion", () => {
 
 describe("getVersionLabel", () => {
   test("returns the version", () => {
-    expect(getVersionLabel(parseVersion("v1.2.3"))).toBe("v1.2.3");
+    expect(getVersionLabel(parseVersion("v1.2.3"), "N/A")).toBe("v1.2.3");
   });
 
   test("returns a placeholder when no version is available", () => {
-    expect(getVersionLabel({ versionAvailable: false })).toBe("N/A");
+    expect(getVersionLabel({ versionAvailable: false }, "N/A")).toBe("N/A");
   });
 });
 

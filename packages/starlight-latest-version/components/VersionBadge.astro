@@ -18,13 +18,17 @@ const { useCache = false } = Astro.props;
 const version = useCache
   ? await getCachedLatestVersion(Astro.session)
   : await getLatestVersion();
+const label = getVersionLabel(
+  version,
+  Astro.locals.t("starlightLatestVersion.unavailable")
+);
 const href = getLatestReleasePageUrl();
 ---
 
 <starlight-latest-version>
   <a href={href} id="starlight-latest-version-link">
     <Badge
-      text={getVersionLabel(version)}
+      text={label}
       variant={config.badge.variant}
       size={config.badge.size}
       id="starlight-latest-version-badge"
@@ -33,9 +37,14 @@ const href = getLatestReleasePageUrl();
 </starlight-latest-version>
 
 <style>
+  starlight-latest-version {
+    flex-shrink: 0;
+  }
+
   #starlight-latest-version-link {
     display: flex;
     align-items: center;
     text-decoration: none;
+    white-space: nowrap;
   }
 </style>

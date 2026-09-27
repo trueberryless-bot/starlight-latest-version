@@ -1,3 +1,4 @@
+/// <reference path="./locals.d.ts" />
 import type { StarlightPlugin } from "@astrojs/starlight/types";
 
 import {
@@ -8,17 +9,12 @@ import {
 import { overrideComponent } from "./libs/starlight";
 import type { StarlightLatestVersionContext } from "./libs/version";
 import { vitePluginStarlightLatestVersion } from "./libs/vite";
+import { Translations } from "./translations";
 
 export type {
   StarlightLatestVersionConfig,
   StarlightLatestVersionContext,
   StarlightLatestVersionUserConfig,
-};
-
-export type {
-  StarlightLatestVersionConfig as starlightLatestVersionConfig,
-  StarlightLatestVersionContext as starlightLatestVersionContext,
-  StarlightLatestVersionUserConfig as starlightLatestVersionUserConfig,
 };
 
 export default function starlightLatestVersion(
@@ -29,6 +25,9 @@ export default function starlightLatestVersion(
   return {
     name: "starlight-latest-version",
     hooks: {
+      "i18n:setup"({ injectTranslations }) {
+        injectTranslations(Translations);
+      },
       "config:setup"({
         addIntegration,
         config: starlightConfig,

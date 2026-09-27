@@ -53,8 +53,11 @@ export function parseVersion(
   };
 }
 
-export function getVersionLabel(context: StarlightLatestVersionContext) {
-  return context.versionAvailable ? context.version : "N/A";
+export function getVersionLabel(
+  context: StarlightLatestVersionContext,
+  unavailableLabel: string
+): string {
+  return context.versionAvailable ? context.version : unavailableLabel;
 }
 
 export type StarlightLatestVersionContext =

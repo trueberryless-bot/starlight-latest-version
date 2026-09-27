@@ -3,6 +3,10 @@ import { getLatestVersion } from "../libs/release";
 import { getVersionLabel } from "../libs/version";
 
 const version = await getLatestVersion();
+const label = getVersionLabel(
+  version,
+  Astro.locals.t("starlightLatestVersion.unavailable")
+);
 ---
 
-<span>{getVersionLabel(version)}</span>
+<span>{label}</span>
